@@ -1,13 +1,7 @@
+import { Link } from "wouter";
 import { Facebook, MessageCircle, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -31,40 +25,25 @@ export default function Footer() {
             <h4 className="font-heading font-bold text-foreground mb-4">Liên kết</h4>
             <ul className="space-y-2">
               <li>
-                <button
-                  onClick={() => scrollToSection("home")}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-home"
-                >
-                  Trang chủ
-                </button>
+                <Link href="/">
+                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-home">
+                    Trang chủ
+                  </a>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-about"
-                >
-                  Về chúng tôi
-                </button>
+                <Link href="/dich-vu">
+                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-services">
+                    Dịch vụ
+                  </a>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection("services")}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-services"
-                >
-                  Dịch vụ
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  data-testid="footer-link-contact"
-                >
-                  Liên hệ
-                </button>
+                <Link href="/lien-he">
+                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-contact">
+                    Liên hệ
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>

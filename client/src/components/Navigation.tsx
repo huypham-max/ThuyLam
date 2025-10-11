@@ -1,68 +1,61 @@
 import { useState } from "react";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
-    }
-  };
+  const isActive = (path: string) => location === path;
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center">
-              <span className="text-white font-bold text-xl">TL</span>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="font-heading font-bold text-lg leading-tight">Thủy Sản Thủy Lam</h1>
-              <p className="text-xs text-muted-foreground">Chất lượng - Uy tín - Bền vững</p>
-            </div>
-          </div>
+          <Link href="/">
+            <a className="flex items-center gap-2 cursor-pointer">
+              <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center">
+                <span className="text-white font-bold text-xl">TL</span>
+              </div>
+              <div className="hidden sm:block">
+                <h1 className="font-heading font-bold text-lg leading-tight">Thủy Sản Thủy Lam</h1>
+                <p className="text-xs text-muted-foreground">Chất lượng - Uy tín - Bền vững</p>
+              </div>
+            </a>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              data-testid="link-home"
-            >
-              Trang chủ
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              data-testid="link-about"
-            >
-              Về chúng tôi
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              data-testid="link-services"
-            >
-              Dịch vụ
-            </button>
-            <button
-              onClick={() => scrollToSection("process")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              data-testid="link-process"
-            >
-              Quy trình
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              data-testid="link-contact"
-            >
-              Liên hệ
-            </button>
+            <Link href="/">
+              <a
+                className={`text-sm font-medium transition-colors ${
+                  isActive("/") ? "text-primary" : "text-foreground hover:text-primary"
+                }`}
+                data-testid="link-home"
+              >
+                Trang chủ
+              </a>
+            </Link>
+            <Link href="/dich-vu">
+              <a
+                className={`text-sm font-medium transition-colors ${
+                  isActive("/dich-vu") ? "text-primary" : "text-foreground hover:text-primary"
+                }`}
+                data-testid="link-services"
+              >
+                Dịch vụ
+              </a>
+            </Link>
+            <Link href="/lien-he">
+              <a
+                className={`text-sm font-medium transition-colors ${
+                  isActive("/lien-he") ? "text-primary" : "text-foreground hover:text-primary"
+                }`}
+                data-testid="link-contact"
+              >
+                Liên hệ
+              </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -83,41 +76,39 @@ export default function Navigation() {
 
         {mobileMenuOpen && (
           <div className="md:hidden py-4 space-y-3 border-t">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="block w-full text-left px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-md"
-              data-testid="mobile-link-home"
-            >
-              Trang chủ
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="block w-full text-left px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-md"
-              data-testid="mobile-link-about"
-            >
-              Về chúng tôi
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
-              className="block w-full text-left px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-md"
-              data-testid="mobile-link-services"
-            >
-              Dịch vụ
-            </button>
-            <button
-              onClick={() => scrollToSection("process")}
-              className="block w-full text-left px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-md"
-              data-testid="mobile-link-process"
-            >
-              Quy trình
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="block w-full text-left px-4 py-2 text-sm font-medium text-foreground hover:bg-accent rounded-md"
-              data-testid="mobile-link-contact"
-            >
-              Liên hệ
-            </button>
+            <Link href="/">
+              <a
+                className={`block w-full text-left px-4 py-2 text-sm font-medium rounded-md ${
+                  isActive("/") ? "bg-accent text-primary" : "text-foreground hover:bg-accent"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+                data-testid="mobile-link-home"
+              >
+                Trang chủ
+              </a>
+            </Link>
+            <Link href="/dich-vu">
+              <a
+                className={`block w-full text-left px-4 py-2 text-sm font-medium rounded-md ${
+                  isActive("/dich-vu") ? "bg-accent text-primary" : "text-foreground hover:bg-accent"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+                data-testid="mobile-link-services"
+              >
+                Dịch vụ
+              </a>
+            </Link>
+            <Link href="/lien-he">
+              <a
+                className={`block w-full text-left px-4 py-2 text-sm font-medium rounded-md ${
+                  isActive("/lien-he") ? "bg-accent text-primary" : "text-foreground hover:bg-accent"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+                data-testid="mobile-link-contact"
+              >
+                Liên hệ
+              </a>
+            </Link>
             <div className="px-4">
               <Button size="sm" className="w-full" data-testid="mobile-button-call">
                 <Phone className="h-4 w-4 mr-2" />

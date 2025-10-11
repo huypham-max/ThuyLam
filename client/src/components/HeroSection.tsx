@@ -1,21 +1,9 @@
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Award, Users, Leaf } from "lucide-react";
 import heroImage from "@assets/stock_images/ocean_waves_aerial_v_0f2df5c9.jpg";
 
 export default function HeroSection() {
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const scrollToServices = () => {
-    const element = document.getElementById("services");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -40,25 +28,27 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-base px-8 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-              onClick={scrollToContact}
-              data-testid="button-contact-hero"
-            >
-              Liên hệ ngay
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-base px-8 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-              onClick={scrollToServices}
-              data-testid="button-services-hero"
-            >
-              Tìm hiểu thêm
-            </Button>
+            <Link href="/lien-he">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-base px-8 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                data-testid="button-contact-hero"
+              >
+                Liên hệ ngay
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link href="/dich-vu">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="text-base px-8 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                data-testid="button-services-hero"
+              >
+                Tìm hiểu thêm
+              </Button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 max-w-3xl mx-auto">
