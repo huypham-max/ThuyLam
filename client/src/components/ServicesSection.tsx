@@ -6,19 +6,19 @@ export default function ServicesSection() {
     {
       icon: ShoppingCart,
       title: "Thu mua cá bò tươi",
-      description: "Công tác thu má bò tươi trực tiếp từ ngư dân tại vùng biển Phuoc Tinh – Bà Rịa. Mỗi mẻ cá đặc biệt thu mua ngay sau khi cập bến, đảm bảo độ tươi ngon, thịt sắn chắc và giá tốt trực tiếp đạng ký nhận.",
+      description: "Chúng tôi thu mua cá bò tươi trực tiếp từ ngư dân tại vùng biển Phuoc Tinh – Bà Rịa. Mỗi mẻ cá được thu mua ngay sau khi cập bến, đảm bảo độ tươi ngon, thịt săn chắc và giá cả hợp lý. Thanh toán nhanh chóng, minh bạch cho ngư dân.",
       testId: "card-service-purchase"
     },
     {
       icon: Factory,
       title: "Chế biến thủy sản",
-      description: "Quy trình chế biến bản đạt, giờ yêu hoàng từ doanh lúc nhập, lúc, chế biến đến đóng gói, chúng tôi tuân thủ các tiêu chuẩn chất lượng cao nhất. Nhờ đội ngũ thợ lành nghề và chuyên môn cao, chúng tôi tự hào tạo ra những sản phẩm đạt điều chuẩn xuất khẩu.",
+      description: "Quy trình chế biến khép kín với công nghệ hiện đại. Từ khâu sơ chế, làm sạch, chế biến đến đóng gói, chúng tôi tuân thủ các tiêu chuẩn chất lượng và an toàn vệ sinh thực phẩm nghiêm ngặt. Đội ngũ công nhân lành nghề đảm bảo sản phẩm đạt tiêu chuẩn xuất khẩu.",
       testId: "card-service-processing"
     },
     {
       icon: Truck,
       title: "Giao dịch cá bò",
-      description: "Chuyên cung cấp sẵ dịch vụ bán hàng cho doanh nghiệp hải sản trở ra các biển Phuoc Tinh, vận xư phận mái miễn đất nước. Với những tiêu thị lạnh nhập vào, khả pháp mời từ chúng tốm các tôm thò uy công ty viêm hải nước địa chỉnh riêng gửi khuớc ngươn.",
+      description: "Chuyên cung cấp sản phẩm cá bò chất lượng cao cho các doanh nghiệp hải sản, nhà hàng và đối tác xuất khẩu. Vận chuyển nhanh chóng với hệ thống xe lạnh chuyên dụng, đảm bảo sản phẩm giữ nguyên độ tươi ngon khi đến tay khách hàng.",
       testId: "card-service-trading"
     }
   ];
