@@ -10,7 +10,7 @@ export default function ProcessSection() {
       number: 1,
       icon: Anchor,
       title: "Thu mua nguyên liệu",
-      description: "Chọn lọa cá bò tươi sống từ nguồn, thu mua trực tiếp ngay sau khi mua dại.",
+      description: "Chọn lọc cá bò tươi sống từ nguồn gốc uy tín, thu mua trực tiếp ngay sau khi cập bến.",
       image: null,
       testId: "step-purchase"
     },
@@ -18,7 +18,7 @@ export default function ProcessSection() {
       number: 2,
       icon: Scissors,
       title: "Sơ chế",
-      description: "Làm sạch các loại sơn gia dân lạp gia chế nguyên liệu độc, giữ nguyên tính tươi.",
+      description: "Làm sạch, loại bỏ nội tạng và sơ chế nguyên liệu theo tiêu chuẩn vệ sinh, giữ nguyên độ tươi ngon.",
       image: workersImage,
       testId: "step-preparation"
     },
@@ -26,7 +26,7 @@ export default function ProcessSection() {
       number: 3,
       icon: CookingPot,
       title: "Chế biến",
-      description: "Xử dụng công nghệ chế đội biết trước tay người dây chuyền một ngành phức công nghiệp vật ước sản phẩm.",
+      description: "Sử dụng công nghệ chế biến hiện đại, quy trình khép kín đảm bảo chất lượng sản phẩm.",
       image: processingImage,
       testId: "step-processing"
     },
@@ -34,7 +34,7 @@ export default function ProcessSection() {
       number: 4,
       icon: Package,
       title: "Đóng gói",
-      description: "Đóng gói sản phẩm cẩn thận theo tiêu hội chuẩn xuất thị, đảm thương bao shiêu vẹn.",
+      description: "Đóng gói sản phẩm cẩn thận theo tiêu chuẩn xuất khẩu, đảm bảo bao bì nguyên vẹn.",
       image: packagingImage,
       testId: "step-packaging"
     },
@@ -42,7 +42,7 @@ export default function ProcessSection() {
       number: 5,
       icon: TruckIcon,
       title: "Giao hàng",
-      description: "Vận chuyển nhanh chóng với xe đảm bảo của dây thoáng độ lạnh, sản phẩm đảm reach khách đúng ngôi dịch.",
+      description: "Vận chuyển nhanh chóng với xe lạnh chuyên dụng, sản phẩm đến tay khách hàng đúng hạn.",
       image: null,
       testId: "step-delivery"
     }

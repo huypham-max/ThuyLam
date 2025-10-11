@@ -1,6 +1,8 @@
 import Navigation from "@/components/Navigation";
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import ProductGallery from "@/components/ProductGallery";
 import Footer from "@/components/Footer";
 
 export default function ServicesPage() {
@@ -20,6 +22,8 @@ export default function ServicesPage() {
         </div>
         <ServicesSection />
         <ProcessSection />
+        <WhyChooseUs />
+        <ProductGallery />
       </main>
       <Footer />
     </div>
