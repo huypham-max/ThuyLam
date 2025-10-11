@@ -32,11 +32,11 @@ export default function ProductGallery() {
     <section className="py-16 md:py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4" data-testid="heading-gallery">
             Hình Ảnh Hoạt Động
           </h2>
           <div className="h-1 w-20 bg-gradient-to-r from-primary to-chart-2 rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground" data-testid="text-gallery-description">
             Cùng nhìn lại hành trình từ biển cả đến bàn ăn của sản phẩm cá bò Thủy Lam
           </p>
         </div>

@@ -6,7 +6,7 @@ export default function ServicesSection() {
     {
       icon: ShoppingCart,
       title: "Thu mua cá bò tươi",
-      description: "Chúng tôi thu mua cá bò tươi trực tiếp từ ngư dân tại vùng biển Phuoc Tinh – Bà Rịa. Mỗi mẻ cá được thu mua ngay sau khi cập bến, đảm bảo độ tươi ngon, thịt săn chắc và giá cả hợp lý. Thanh toán nhanh chóng, minh bạch cho ngư dân.",
+      description: "Chúng tôi thu mua cá bò tươi trực tiếp từ ngư dân tại vùng biển Phước Tỉnh – Bà Rịa. Mỗi mẻ cá được thu mua ngay sau khi cập bến, đảm bảo độ tươi ngon, thịt săn chắc và giá cả hợp lý. Thanh toán nhanh chóng, minh bạch cho ngư dân.",
       testId: "card-service-purchase"
     },
     {

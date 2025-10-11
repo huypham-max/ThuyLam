@@ -16,7 +16,7 @@ export default function AboutSection() {
             
             <p className="text-lg text-foreground leading-relaxed" data-testid="text-about-description">
               Công ty TNHH Chế Biến Thủy Sản Thủy Lam được thành lập với sứ mệnh là đơn vị chuyên thu mua, chế biến và phân phối các loại 
-              sản phẩm chất lượng cao từ Phuoc Tinh. Với nhiều năm kinh nghiệm trong lĩnh vực chế biến thủy sản, chúng tôi cam kết mang đến 
+              sản phẩm chất lượng cao từ Phước Tỉnh. Với nhiều năm kinh nghiệm trong lĩnh vực chế biến thủy sản, chúng tôi cam kết mang đến 
               cho khách hàng những sản phẩm tươi ngon, đảm bảo an toàn vệ sinh thực phẩm và đạt tiêu chuẩn xuất khẩu.
             </p>
 
