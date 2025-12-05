@@ -1,5 +1,7 @@
 import { Link } from "wouter";
 import { Facebook, MessageCircle, Phone, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import logo from "@assets/logo.png";
 
 export default function Footer() {
   return (
@@ -8,11 +10,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">TL</span>
-              </div>
+              <motion.img
+                src={logo}
+                alt="Thủy Lam Logo"
+                className="h-24 w-24 object-contain"
+                whileHover={{ scale: 1.15, rotate: 10 }}
+                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+              />
               <div>
-                <h3 className="font-heading font-bold text-lg leading-tight">Thủy Sản Thủy Lam</h3>
+                <h3 className="font-heading font-bold text-lg leading-tight">Thủy Sản Thùy Lam</h3>
                 <p className="text-xs text-muted-foreground">Chất lượng - Uy tín</p>
               </div>
             </div>
@@ -54,7 +62,6 @@ export default function Footer() {
               <li className="text-sm text-muted-foreground">Thu mua cá bò tươi</li>
               <li className="text-sm text-muted-foreground">Chế biến thủy sản</li>
               <li className="text-sm text-muted-foreground">Giao dịch cá bò</li>
-              <li className="text-sm text-muted-foreground">Xuất khẩu quốc tế</li>
             </ul>
           </div>
 
@@ -64,13 +71,13 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
                 <a href="tel:0788838954" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  0788 838 954
+                  0798838994
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
                 <a href="mailto:hotro@thuylam.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  hotro@thuylam.com
+                  ctytnhhthuysanthuylam@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2 pt-2">

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import logo from "@assets/logo.png";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,9 +17,15 @@ export default function Navigation() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/">
             <a className="flex items-center gap-2 cursor-pointer">
-              <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">TL</span>
-              </div>
+              <motion.img
+                src={logo}
+                alt="Thủy Lam Logo"
+                className="h-16 w-16 object-contain"
+                whileHover={{ scale: 1.15, rotate: 10 }}
+                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+              />
               <div className="hidden sm:block">
                 <h1 className="font-heading font-bold text-lg leading-tight">Thủy Sản Thủy Lam</h1>
                 <p className="text-xs text-muted-foreground">Chất lượng - Uy tín - Bền vững</p>

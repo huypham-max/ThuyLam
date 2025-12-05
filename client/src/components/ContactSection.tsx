@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Facebook, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, MessageCircle, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -14,174 +15,227 @@ export default function ContactSection() {
     phone: "",
     message: ""
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Gửi thành công!",
-      description: "Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Gửi thành công!",
+          description: "Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm nhất.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast({
+          title: "Gửi thất bại",
+          description: data.message || "Đã có lỗi xảy ra, vui lòng thử lại.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Lỗi kết nối",
+        description: "Không thể gửi tin nhắn. Vui lòng kiểm tra mạng.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 lg:py-32 bg-card">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-            Liên Hệ Với Chúng Tôi
-          </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-primary to-chart-2 rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground">
-            Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!
-          </p>
+    <section id="contact" className="py-20 md:py-32 bg-gradient-to-br from-background via-card to-background overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Hiệu ứng nền mờ nhẹ */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-chart-2/10 rounded-full blur-3xl" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <Card>
+        {/* Tiêu đề với hiệu ứng xuất hiện */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-chart-2 mb-4">
+            Liên Hệ Với Chúng Tôi
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-primary to-chart-2 rounded-full mx-auto mb-6" />
+          <p className="text-lg text-muted-foreground">
+            Đừng ngần ngại để lại lời nhắn – chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7!
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          {/* Form - hiệu ứng stagger */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-2"
+          >
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-xl">
               <CardHeader>
-                <CardTitle className="text-2xl font-heading">Gửi Tin Nhắn</CardTitle>
+                <CardTitle className="text-2xl font-bold flex items-center gap-3">
+                  <Send className="w-6 h-6 text-primary" />
+                  Gửi Tin Nhắn Ngay
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-foreground">
-                        Họ và Tên *
-                      </label>
-                      <Input
-                        id="name"
-                        placeholder="Nhập họ và tên"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required
-                        data-testid="input-name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-foreground">
-                        Email *
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Nhập email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        required
-                        data-testid="input-email"
-                      />
-                    </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {["name", "email"].map((field, idx) => (
+                      <motion.div
+                        key={field}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 + idx * 0.1 }}
+                        className="space-y-2"
+                      >
+                        <label className="text-sm font-semibold text-foreground">
+                          {field === "name" ? "Họ và Tên" : "Email"} <span className="text-primary">*</span>
+                        </label>
+                        <Input
+                          type={field === "email" ? "email" : "text"}
+                          placeholder={field === "name" ? "Nguyễn Văn A" : "you@example.com"}
+                          value={formData[field as keyof typeof formData]}
+                          onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+                          required
+                          className="h-12 border-muted focus:border-primary transition-all duration-300"
+                        />
+                      </motion.div>
+                    ))}
                   </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-foreground">
-                      Số Điện Thoại *
-                    </label>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="space-y-2"
+                  >
+                    <label className="text-sm font-semibold">Số Điện Thoại <span className="text-primary">*</span></label>
                     <Input
-                      id="phone"
                       type="tel"
-                      placeholder="Nhập số điện thoại"
+                      placeholder="0388 888 888"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       required
-                      data-testid="input-phone"
+                      className="h-12"
                     />
-                  </div>
+                  </motion.div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-foreground">
-                      Tin Nhắn *
-                    </label>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                    className="space-y-2"
+                  >
+                    <label className="text-sm font-semibold">Tin Nhắn <span className="text-primary">*</span></label>
                     <Textarea
-                      id="message"
-                      placeholder="Nhập tin nhắn của bạn"
-                      rows={5}
+                      placeholder="Bạn cần hỗ trợ gì? Hãy cho chúng tôi biết chi tiết nhé..."
+                      rows={6}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
-                      data-testid="input-message"
+                      className="resize-none"
                     />
-                  </div>
+                  </motion.div>
 
-                  <Button type="submit" size="lg" className="w-full sm:w-auto" data-testid="button-submit">
-                    Gửi Tin Nhắn
-                  </Button>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full sm:w-auto px-10 bg-gradient-to-r from-primary to-chart-2 hover:from-chart-2 hover:to-primary transition-all duration-500 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <>Đang gửi...</>
+                      ) : (
+                        <>
+                          Gửi Tin Nhắn
+                          <Send className="ml-2 h-5 w-5" />
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
-          <div className="space-y-6">
-            <Card>
+          {/* Thông tin liên hệ - hiệu ứng từ bên phải */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="space-y-6"
+          >
+            <Card className="border-0 shadow-2xl bg-gradient-to-br from-primary/5 to-chart-2/5 backdrop-blur-xl">
               <CardHeader>
-                <CardTitle className="text-xl font-heading">Thông Tin Liên Hệ</CardTitle>
+                <CardTitle className="text-xl font-bold text-primary">Liên Hệ Nhanh</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3" data-testid="contact-phone">
-                  <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Gọi ngay</p>
-                    <a href="tel:0788838954" className="text-muted-foreground hover:text-primary transition-colors">
-                      0788 838 954
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3" data-testid="contact-zalo">
-                  <div className="h-10 w-10 rounded-lg bg-chart-2/10 flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="h-5 w-5 text-chart-2" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Zalo</p>
-                    <a href="#" className="text-muted-foreground hover:text-chart-2 transition-colors">
-                      Chat với chúng tôi
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3" data-testid="contact-facebook">
-                  <div className="h-10 w-10 rounded-lg bg-chart-3/10 flex items-center justify-center flex-shrink-0">
-                    <Facebook className="h-5 w-5 text-chart-3" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Facebook</p>
-                    <a href="#" className="text-muted-foreground hover:text-chart-3 transition-colors">
-                      Cá Bò Phuoc Tinh
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3" data-testid="contact-email">
-                  <div className="h-10 w-10 rounded-lg bg-chart-4/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-5 w-5 text-chart-4" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Email</p>
-                    <a href="mailto:hotro@thuylam.com" className="text-muted-foreground hover:text-chart-4 transition-colors">
-                      hotro@thuylam.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3" data-testid="contact-address">
-                  <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Địa chỉ</p>
-                    <p className="text-muted-foreground">
-                      Đường ABC, Quận 1, TP. Hồ Chí Minh
-                    </p>
-                  </div>
-                </div>
+              <CardContent className="space-y-5">
+                {[
+                  { icon: Phone, label: "Hotline", value: "0788 838 954", href: "tel:0798838994", color: "text-primary" },
+                  { icon: MessageCircle, label: "Zalo", value: "Chat ngay", href: "https://zalo.me/0798838994", color: "text-chart-2" },
+                  { icon: Mail, label: "Email", value: "ctytnhhthuysanthuylam@gmail.com", href: "mailto:ctytnhhthuysanthuylam@gmail.com", color: "text-chart-4" },
+                  { icon: MapPin, label: "Địa chỉ", value: "Ấp Phước Thái, xã Long Hải, thành phố Hồ Chí Minh", href: "#", color: "text-primary", noLink: true },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + idx * 0.1 }}
+                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-all duration-300 group"
+                  >
+                    <div className={`h-12 w-12 rounded-full ${item.color}/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform transition`}>
+                      <item.icon className={`h-6 w-6 ${item.color}`} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">{item.label}</p>
+                      {item.noLink ? (
+                        <p className="text-muted-foreground text-sm mt-1">{item.value}</p>
+                      ) : (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="text-muted-foreground hover:text-foreground font-medium transition-colors"
+                        >
+                          {item.value}
+                        </a>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
