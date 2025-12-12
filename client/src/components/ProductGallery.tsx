@@ -27,7 +27,7 @@ const galleryItems = [
   {
     image: image4,
     title: "Cá bò thành phẩm",
-    description: "Cá bò đã được làm sạch, cấp đông và đóng gói đạt chuẩn",
+    description: "Cá bò đã được làm sạch, cấp đông và đóng gói chất lượng",
   },
   {
     image: image5,

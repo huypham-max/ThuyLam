@@ -74,7 +74,7 @@ export default function AboutSection() {
                 <CheckCircle className="h-6 w-6 text-chart-2 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-foreground">Thị Trường Trong Nước </p>
-                  <p className="text-sm text-muted-foreground">Sản phẩm đạt tiêu chuẩn cao</p>
+                  <p className="text-sm text-muted-foreground">Sản phẩm chất lượng</p>
                 </div>
               </motion.div>
             </motion.div>

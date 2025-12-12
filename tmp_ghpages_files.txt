@@ -1,0 +1,14 @@
+﻿.gitignore
+.replit
+_redirects
+assets/Screenshot 2025-10-07 204915-DM-B7onb.png
+"assets/c\303\241 th\303\240nh ph\341\272\251m-4bIhYXiR.jpg"
+"assets/c\303\241 t\306\260\306\241i-Dpix_uGc.jpg"
+assets/index-CSnUyTIu.js
+assets/index-DV2yTEPR.css
+assets/logo-0oMT1U1C.png
+assets/ocean_waves_aerial_v_0f2df5c9-Br0q7n5p.jpg
+"assets/xe ch\341\273\237-Ctl8S7l-.jpg"
+"assets/\341\272\243nh l\303\240m-CTzZt3-D.jpg"
+index.html
+index.js

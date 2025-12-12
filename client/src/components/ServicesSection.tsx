@@ -12,7 +12,7 @@ const services = [
   {
     icon: Factory,
     title: "Chế biến thủy sản",
-    description: "Quy trình chế biến khép kín với công nghệ hiện đại. Từ khâu sơ chế, làm sạch, chế biến đến đóng gói, chúng tôi tuân thủ các tiêu chuẩn chất lượng và an toàn vệ sinh thực phẩm nghiêm ngặt. Đội ngũ công nhân lành nghề đảm bảo sản phẩm đạt tiêu chuẩn xuất khẩu.",
+    description: "Quy trình chế biến khép kín với công nghệ hiện đại. Từ khâu sơ chế, làm sạch, chế biến đến đóng gói, chúng tôi tuân thủ các tiêu chuẩn chất lượng . Đội ngũ công nhân lành nghề đảm bảo sản phẩm đạt tiêu chuẩn xuất khẩu.",
     testId: "card-service-processing"
   },
   {
@@ -24,7 +24,7 @@ const services = [
 ];
 
 export default function ServicesSection() {
-  return (+
+  return (
     <section id="services" className="py-16 md:py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Tiêu đề */}

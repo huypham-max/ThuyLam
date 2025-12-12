@@ -30,7 +30,7 @@ const reasons = [
   {
     icon: Award,
     title: "Đạt chuẩn chất lượng",
-    description: "Sản phẩm đạt các tiêu chuẩn an toàn thực phẩm nghiêm ngặt trong nước.",
+    description: "Sản phẩm chất lượng cho từng đơn hàng.",
     color: "from-indigo-500 to-indigo-700"
   },
   {
