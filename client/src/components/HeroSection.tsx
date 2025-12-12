@@ -4,8 +4,8 @@ import { ChevronRight, Award, Users, Leaf } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import heroImage from "@assets/stock_images/ocean_waves_aerial_v_0f2df5c9.jpg";
+import logo from "@assets/logo.png"; // Logo gốc của bạn (nên là PNG trong suốt để đẹp nhất)
 
-// Counter component cho số liệu
 const Counter = ({ from, to, suffix = "" }: { from: number; to: number; suffix?: string }) => {
   const [count, setCount] = useState(from);
   const ref = useRef<HTMLSpanElement>(null);
@@ -41,8 +41,7 @@ export default function HeroSection() {
   const { scrollY } = useScroll();
   const yBg = useTransform(scrollY, [0, 500], [0, 150]);
 
-  // Typewriter effect cho tiêu đề
-  const title = "Cty TNHH Chế Biến Thủy Sản Thùy Lam";
+  const title = "Thủy Sản Thùy Lam";
   const subtitle = "Nguồn gốc Phuoc Tinh – Cá bò tươi sống, đảm bảo chất lượng";
 
   return (
@@ -85,50 +84,43 @@ export default function HeroSection() {
 
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center text-white">
         <div className="max-w-5xl mx-auto space-y-12">
-          {/* Main Title - Typewriter + Glow */}
+          {/* Main Title */}
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black leading-tight tracking-tight"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black leading-tight tracking-tight drop-shadow-2xl"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            style={{
+              textShadow: "0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(59,130,246,0.4)",
+            }}
           >
-            {title.split("").map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.05,
-                  ease: "easeOut",
-                }}
-                className="inline-block drop-shadow-2xl"
-                style={{
-                  textShadow: "0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(59,130,246,0.4)",
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            {title}
           </motion.h1>
+
+          {/* Logo - Nền trắng + viền trắng dày */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="flex justify-center"
+          >
+            <div className="w-[120px] h-[120px] sm:w-[144px] sm:h-[144px] md:w-[168px] md:h-[168px] rounded-full bg-white overflow-hidden shadow-sm">
+              <img
+                src={logo}
+                alt="Logo Thuy Lam"
+                className="w-full h-full object-contain scale-110"
+              />
+            </div>
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p
             className="text-xl sm:text-2xl md:text-3xl text-white/95 font-medium max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 1 }}
+            transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
           >
-            {subtitle.split("").map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.4 + i * 0.02 }}
-              >
-                {char}
-              </motion.span>
-            ))}
+            {subtitle}
           </motion.p>
 
           {/* Buttons */}
@@ -136,13 +128,12 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
           >
             <Link href="/lien-he">
               <Button
                 size="lg"
                 className="group relative px-10 py-7 text-lg font-semibold bg-white text-primary hover:bg-white/95 shadow-2xl overflow-hidden transition-all duration-300"
-                data-testid="button-contact-hero"
               >
                 <span className="relative z-10 flex items-center">
                   Liên hệ ngay
@@ -157,7 +148,6 @@ export default function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="px-10 py-7 text-lg font-medium border-2 border-white/50 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-white transition-all duration-300"
-                data-testid="button-services-hero"
               >
                 Tìm hiểu thêm
               </Button>

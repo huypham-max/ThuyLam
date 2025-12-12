@@ -19,7 +19,7 @@ export default function Navigation() {
             <a className="flex items-center gap-2 cursor-pointer">
               <motion.img
                 src={logo}
-                alt="Thủy Lam Logo"
+                alt="Thùy Lam Logo"
                 className="h-16 w-16 object-contain"
                 whileHover={{ scale: 1.15, rotate: 10 }}
                 transition={{ duration: 0.3 }}
