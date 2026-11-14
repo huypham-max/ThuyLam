@@ -200,8 +200,8 @@ export default function ContactSection() {
               </CardHeader>
               <CardContent className="space-y-5">
                 {[
-                  { icon: Phone, label: "Hotline", value: "0788 838 954", href: "tel:0798838994", color: "text-primary" },
-                  { icon: MessageCircle, label: "Zalo", value: "Chat ngay", href: "https://zalo.me/0798838994", color: "text-chart-2" },
+                  { icon: Phone, label: "Hotline", value: "0903642357", href: "tel:0903642357", color: "text-primary" },
+                  { icon: MessageCircle, label: "Zalo", value: "Chat ngay",href: "https://zalo.me/84903642357", color: "text-chart-2" },
                   { icon: Mail, label: "Email", value: "ctytnhhthuysanthuylam@gmail.com", href: "mailto:ctytnhhthuysanthuylam@gmail.com", color: "text-chart-4" },
                   { icon: MapPin, label: "Địa chỉ", value: "Ấp Phước Thái, xã Long Hải, thành phố Hồ Chí Minh", href: "#", color: "text-primary", noLink: true },
                 ].map((item, idx) => (

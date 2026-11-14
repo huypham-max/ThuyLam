@@ -69,7 +69,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-4">
             <Button size="sm" data-testid="button-call">
               <Phone className="h-4 w-4 mr-2" />
-              0788 838 954
+              0903642357
             </Button>
           </div>
 
@@ -120,7 +120,7 @@ export default function Navigation() {
             <div className="px-4">
               <Button size="sm" className="w-full" data-testid="mobile-button-call">
                 <Phone className="h-4 w-4 mr-2" />
-                0788 838 954
+                0903642357
               </Button>
             </div>
           </div>

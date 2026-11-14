@@ -14,12 +14,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const emailUser = (process.env.EMAIL_USER || "your-email@gmail.com").trim();
   const rawPass = process.env.EMAIL_PASSWORD || "your-app-password";
   const emailPass = String(rawPass).trim();
+  const isUsingPlaceholderCredentials =
+    emailUser === "your-email@gmail.com" ||
+    emailPass === "your-app-password" ||
+    !emailUser ||
+    !emailPass;
 
   console.log("[Email Config] User:", emailUser);
   console.log("[Email Config] Raw password length:", rawPass ? String(rawPass).length : 0, "chars");
   console.log("[Email Config] Trimmed password length:", emailPass.length, "chars");
   console.log("[Email Config] First 3 chars:", emailPass.substring(0, 3));
   if (String(rawPass) !== emailPass) console.log("[Email Config] Note: password was trimmed of surrounding whitespace");
+  if (isUsingPlaceholderCredentials) {
+    console.warn("[Email Config] Warning: Gmail credentials are not configured. Update EMAIL_USER and EMAIL_PASSWORD in your .env file.");
+  }
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -78,8 +86,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.error("[Email Error] Message:", error.message);
         console.error("[Email Error] Stack:", error.stack);
       }
+
+      const errorMessage =
+        error && typeof error === "object" && "code" in error && error.code === "EAUTH"
+          ? "Gmail rejected the login credentials. Please generate a new 16-character app password and update EMAIL_PASSWORD in your .env file."
+          : "Failed to send email";
+
       res.status(500).json({ 
-        message: "Failed to send email",
+        message: errorMessage,
         success: false 
       });
     }
